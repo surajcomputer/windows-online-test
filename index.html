@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suraj Computer Training Center - Windows Online Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f8;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .question {
+      margin-top: 20px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-left: 5px solid #007bff;
+    }
+    .options label {
+      display: block;
+      margin-left: 20px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Suraj Computer Training Center</h1>
+    <h2>Windows Online Test</h2>
+
+    <form id="testForm">
+      <label for="name">Student Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="fatherName">Father's Name:</label>
+      <input type="text" id="fatherName" name="fatherName" required />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="text" id="dob" name="dob" placeholder="DD-MM-YYYY" required />
+
+      <!-- Questions 1 to 50 -->
+      <div id="questions"></div>
+
+      <button type="submit">Submit Test</button>
+    </form>
+  </div>
+
+  <script>
+    const questions = [
+      "Windows क्या है?",
+      "Windows किस कंपनी द्वारा बनाया गया है?",
+      "Desktop पर क्या दिखता है?",
+      "Windows का पहला version कब आया था?",
+      "Recycle Bin किसके लिए प्रयोग होता है?",
+      "Windows Explorer का उपयोग किस लिए होता है?",
+      "Windows + E shortcut क्या खोलता है?",
+      "Taskbar कहाँ स्थित होती है?",
+      "MS Paint किस कार्य में आता है?",
+      "WordPad किस प्रकार का प्रोग्राम है?",
+      "Windows में 'Start' बटन कहाँ होता है?",
+      "एक Folder में क्या हो सकता है?",
+      "Notepad किसके लिए प्रयोग किया जाता है?",
+      "Ctrl + C किसके लिए होता है?",
+      "Ctrl + V का क्या काम है?",
+      "Ctrl + X से क्या होता है?",
+      "Alt + F4 किसके लिए प्रयोग होता है?",
+      "Windows + D से क्या होता है?",
+      "Shift + Delete से क्या होता है?",
+      "F5 का उपयोग क्या है?",
+      "Print Screen से क्या होता है?",
+      "Windows + R से क्या खुलता है?",
+      "Windows का Default Browser कौन है?",
+      "Recycle Bin से फाइल वापिस कैसे लाते हैं?",
+      "Desktop Background को क्या कहते हैं?",
+      "Ctrl + Z का क्या उपयोग है?",
+      "Ctrl + A क्या करता है?",
+      "Ctrl + P किसके लिए होता है?",
+      "Control Panel का उपयोग क्या है?",
+      "File का Extension क्या होता है?",
+      "Computer को Restart करने से क्या होता है?",
+      "Windows + L shortcut किस लिए है?",
+      "Caps Lock क्या करता है?",
+      "File और Folder में क्या फर्क है?",
+      "MS Word किसका उदाहरण है?",
+      "MS Excel किस काम में आता है?",
+      "MS PowerPoint का उपयोग किसमें होता है?",
+      "Shortcut बनाने के लिए क्या किया जाता है?",
+      "System Tray कहाँ होता है?",
+      "Run Dialog Box खोलने का शॉर्टकट क्या है?",
+      "Windows एक ऑपरेटिंग सिस्टम है। (True/False)",
+      "MS Paint से ड्राइंग बनाई जा सकती है। (True/False)",
+      "Ctrl + C फाइल Delete करता है। (True/False)",
+      "Alt + F4 से Program बंद होता है। (True/False)",
+      "MS Word का उपयोग प्रेजेंटेशन के लिए किया जाता है। (True/False)",
+      "Recycle Bin में Deleted Files नहीं रखी जातीं। (True/False)",
+      "File को Rename नहीं किया जा सकता। (True/False)",
+      "Windows में केवल Text फाइलें बनाई जा सकती हैं। (True/False)",
+      "Windows + D से Desktop दिखता है। (True/False)",
+      "Windows को Touch Screen डिवाइस में इस्तेमाल नहीं किया जा सकता। (True/False)"
+    ];
+
+    const options = [
+      ["Hardware", "Operating System", "Application Software", "Antivirus"],
+      ["Apple", "Microsoft", "Google", "Intel"],
+      ["Only wallpaper", "Icons and shortcuts", "Internet pages", "Control Panel"],
+      ["1983", "1985", "1990", "2000"],
+      ["Files को Compress करने के लिए", "Deleted Files को रखने के लिए", "Files Print करने के लिए", "Files Rename करने के लिए"],
+      ["Songs सुनने के लिए", "Files & Folders देखने के लिए", "Games खेलने के लिए", "Internet चलाने के लिए"],
+      ["MS Excel", "File Explorer", "Windows Store", "WordPad"],
+      ["ऊपर", "नीचे", "दाएँ", "बाएँ"],
+      ["Typing", "Drawing", "Music", "Video Editing"],
+      ["Spreadsheet", "Word Processor", "Antivirus", "Operating System"],
+      ["ऊपर बाएँ", "नीचे बाएँ", "दाएँ ऊपर", "केंद्र में"],
+      ["केवल एक फाइल", "कई फाइलें", "केवल फोटो", "केवल Videos"],
+      ["गेम बनाने के लिए", "टेक्स्ट लिखने के लिए", "इंटरनेट चलाने के लिए", "वीडियो एडिटिंग के लिए"],
+      ["Cut", "Copy", "Paste", "Close"],
+      ["Paste", "Print", "Undo", "Save"],
+      ["Copy", "Cut", "Close", "None"],
+      ["नई फाइल खोलने के लिए", "प्रोग्राम बंद करने के लिए", "कंप्यूटर बंद करने के लिए", "प्रिंट करने के लिए"],
+      ["सिस्टम Restart", "सभी विंडो minimize", "Windows बंद", "Display settings खुलता है"],
+      ["फाइल Recycle Bin में जाती है", "फाइल Permanently Delete होती है", "फाइल Rename होती है", "फोल्डर बनता है"],
+      ["Save करने के लिए", "Refresh करने के लिए", "Shut Down के लिए", "Paste के लिए"],
+      ["स्क्रीन बंद होती है", "स्क्रीन की फोटो खींची जाती है", "कुछ नहीं होता", "माउस बंद हो जाता है"],
+      ["Run Dialog Box", "MS Word", "Paint", "Calculator"],
+      ["Chrome", "Firefox", "Microsoft Edge", "Opera"],
+      ["Permanently Delete", "Empty", "Restore", "Rename"],
+      ["Folder", "Shortcut", "Wallpaper", "Home page"],
+      ["Save", "Paste", "Undo", "Redo"],
+      ["कोई फाइल खोलता है", "सभी टेक्स्ट को चुनता है", "सेव करता है", "विंडो बंद करता है"],
+      ["Copy", "Paste", "Print", "Project"],
+      ["File Delete करने के लिए", "System Settings बदलने के लिए", "Internet खोलने के लिए", "MS Paint चलाने के लिए"],
+      ["नाम", "लोकेशन", "प्रकार दिखाने वाला suffix", "Font size"],
+      ["बंद होता है", "ताज़ा शुरू होता है", "Hang हो जाता है", "Update रुक जाता है"],
+      ["Lock करने के लिए", "Logout करने के लिए", "Login करने के लिए", "Shutdown के लिए"],
+      ["टाइपिंग बंद करता है", "अक्षरों को Capital में बदलता है", "Delete करता है", "Space देता है"],
+      ["कोई फर्क नहीं", "Folder फाइलें रखता है", "File folder को रखती है", "दोनों एक ही चीज हैं"],
+      ["Spreadsheet", "Word Processor", "Presentation", "Antivirus"],
+      ["फोटो एडिटिंग", "टेक्स्ट लिखने", "कैलकुलेशन और टेबल", "गेमिंग"],
+      ["स्लाइड शो", "टेक्स्ट लिखने", "कंप्यूटर बंद करने", "मूवी देखने"],
+      ["Right click → Create Shortcut", "Paste", "Refresh", "Delete"],
+      ["Taskbar के बाएँ", "Screen के बीच में", "Taskbar के दाएँ", "Desktop पर"],
+      ["Alt + R", "Ctrl + R", "Windows + R", "Shift + R"],
+      ["True", "False"],
+      ["True", "False"],
+      ["True", "False"],
+      ["True", "False"],
+      ["True", "False"],
+      ["True", "False"],
+      ["True", "False"],
+      ["True", "False"],
+      ["True", "False"],
+      ["True", "False"]
+    ];
+
+    const container = document.getElementById("questions");
+    questions.forEach((q, index) => {
+      const qDiv = document.createElement("div");
+      qDiv.className = "question";
+      qDiv.innerHTML = `<p>${index + 1}. ${q}</p>`;
+      const opts = document.createElement("div");
+      opts.className = "options";
+      options[index].forEach((opt, optIndex) => {
+        const letter = String.fromCharCode(97 + optIndex);
+        opts.innerHTML += `<label><input type="radio" name="q${index + 1}" value="${letter}" required /> ${letter}) ${opt}</label>`;
+      });
+      qDiv.appendChild(opts);
+      container.appendChild(qDiv);
+    });
+
+    document.getElementById("testForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Test submitted successfully! (Note: In a real site, answers would be stored.)");
+    });
+  </script>
+</body>
+</html>
